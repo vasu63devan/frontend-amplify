@@ -3,7 +3,7 @@ import './App.css';
 import Amplify, { API } from 'aws-amplify'
 import React, { useEffect, useState } from 'react'
 
-const myAPI = process.env.REACT_APP_API_NAME
+const myAPI = $REACT_APP_API_NAME
 const path = '/customers'; 
 
 const App = () => {
