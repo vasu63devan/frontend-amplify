@@ -3,7 +3,7 @@ import './App.css';
 import Amplify, { API } from 'aws-amplify'
 import React, { useEffect, useState } from 'react'
 
-const myAPI = "amplifylambda"
+const myAPI = "$API_URL"
 const path = '/customers'; 
 
 const App = () => {
