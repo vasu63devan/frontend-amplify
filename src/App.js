@@ -1,9 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import Amplify, { API } from 'aws-amplify'
 import React, { useEffect, useState } from 'react'
+import { Amplify } from "aws-amplify";
+import awsExports from "./aws-exports";
+Amplify.configure(awsExports);
 
-const myAPI = "amplify"//process.env.REACT_APP_API_NAME
+const myAPI = "amplify"
 const path = '/customers'; 
 
 const App = () => {
