@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react'
 import { Amplify } from "aws-amplify";
+import { get } from "aws-amplify/api";
 import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
 
@@ -15,18 +16,42 @@ const App = () => {
   //Function to fetch from our backend and update customers array
   function getCustomer(e) {
     let customerId = e.input
-    API.get(myAPI, path + "/" + customerId)
-       .then(response => {
-         console.log(response)
-         let newCustomers = [...customers]
-         newCustomers.push(response)
-         setCustomers(newCustomers)
 
-       })
-       .catch(error => {
-         console.log(error)
-       })
+  //   get(myAPI, path + "/" + customerId)
+  //      .then(response => {
+  //        console.log(response)
+  //        let newCustomers = [...customers]
+  //        newCustomers.push(response)
+  //        setCustomers(newCustomers)
+
+  //      })
+  //      .catch(error => {
+  //        console.log(error)
+  //      }
+  postTodo() 
+  async function postTodo() {
+    try {
+      const restOperation = get({
+        apiName: 'amplify',
+        path: '/customers',
+        options: {
+          body: {
+            message: 'Mow the lawn'
+          }
+        }
+      });
+  
+      const { body } = await restOperation.response;
+      const response = await body.json();
+  
+      console.log('POST call succeeded');
+      console.log(response);
+    } catch (e) {
+      console.log('POST call failed: ', e);
+    }
   }
+   }
+  
 
   return (
     
