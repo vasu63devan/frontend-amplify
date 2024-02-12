@@ -1,14 +1,14 @@
-// import logo from './logo.svg';
-// import './App.css';
-// import React, { useEffect, useState } from 'react'
-// import { Amplify } from "aws-amplify";
-// import { get } from "aws-amplify/api";
-// import axios from 'axios'
-// import awsExports from "./aws-exports";
-// Amplify.configure(awsExports);
+import logo from './logo.svg';
+import './App.css';
+import React, { useEffect, useState } from 'react'
+import { Amplify } from "aws-amplify";
+import { get } from "aws-amplify/api";
+import axios from 'axios'
+import awsExports from "./aws-exports";
+Amplify.configure(awsExports);
 
-// const myAPI = "apiamplify"
-// const path = '/customers'; 
+const myAPI = "apiamplify"
+const path = '/customers'; 
 
 // const App = () => {
 //   const [input, setInput] = useState("")
