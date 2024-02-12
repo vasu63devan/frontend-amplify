@@ -1,3 +1,4 @@
+import React,{Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react'
@@ -7,8 +8,8 @@ import axios from 'axios'
 import awsExports from "./aws-exports";
 Amplify.configure(awsExports);
 
-const myAPI = "apiamplify"
-const path = '/customers'; 
+// const myAPI = "apiamplify"
+// const path = '/customers'; 
 
 // const App = () => {
 //   const [input, setInput] = useState("")
@@ -93,9 +94,7 @@ const path = '/customers';
 
 // export default App;
 
-import React,{Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
+
 
 class App extends Component {
   
