@@ -1,12 +1,11 @@
-import React,{Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import React, { useEffect, useState } from 'react'
-import { Amplify } from "aws-amplify";
-import { get } from "aws-amplify/api";
-import axios from 'axios'
-import awsExports from "./aws-exports";
-Amplify.configure(awsExports);
+// import logo from './logo.svg';
+// import './App.css';
+// import React, { useEffect, useState } from 'react'
+// import { Amplify } from "aws-amplify";
+// import { get } from "aws-amplify/api";
+// import axios from 'axios'
+// import awsExports from "./aws-exports";
+// Amplify.configure(awsExports);
 
 // const myAPI = "apiamplify"
 // const path = '/customers'; 
@@ -95,37 +94,49 @@ Amplify.configure(awsExports);
 // export default App;
 
 
+import React,{Component} from 'react';
+import logo from './logo.svg';
+import './App.css';
+// import React, { useEffect, useState } from 'react'
+import { Amplify } from "aws-amplify";
+import { get } from "aws-amplify/api";
+import axios from 'axios'
+import awsExports from "./aws-exports";
+import { useState } from 'react';
+Amplify.configure(awsExports);
 
-class App extends Component {
-  
-constructor(props)
-{
+const myAPI = "apiamplify"
+const path = '/connectmysql'; 
+const App =()=> {
+const [input, setInput] = useState("")
 
-  super(props);
-  this.state={
-    name:'',
-    rollno:''
-  }
-}
+      const [formData,setFormData]=useState({
+        name:'',
+        rollno:''
+      })
 
-handleChange= (event) =>{
-  event.preventDefault();
+
+const handleChange= (event) =>{
   const {name, value} = event.target;
-this.setState({[name]:value});
-console.log(this.state);
+  setFormData({...formData,[name]:value});
+}
+const handleOnSubmit=async (event)=>{
+  event.preventDefault();
+  const test =await axios.post("https://qt163r2o5i.execute-api.us-east-1.amazonaws.com/dev/connectmysql",formData);
+  console.log("testtttttttttttt",test)
 }
 
-  render(){
+
   return (
     <div className="App">
-        <form method='post' action='https://qt163r2o5i.execute-api.us-east-1.amazonaws.com/dev/connecttomysql'>
+        <form onSubmit={handleOnSubmit}>
             <div className='name'>
               <label htmlFor='name'>Enter Name:</label>
-              <input type='text' name='name' onChange={this.handleChange}/>
+              <input type='text' name='name' onChange={handleChange}/>
             </div>
             <div className='rollno'>
               <label htmlFor='rollno'>Enter Roll-no:</label>
-              <input type='text' name='rollno' onChange={this.handleChange}/>
+              <input type='text' name='rollno' onChange={handleChange}/>
             </div>
             <div className='submit'>
               <input type='submit'/>
@@ -134,6 +145,5 @@ console.log(this.state);
 
      </div>
   );
-}
 }
 export default App;
